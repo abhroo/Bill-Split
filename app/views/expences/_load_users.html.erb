@@ -1,0 +1,5 @@
+<% @users.each do |user| %>
+  <%= check_box :expences, "user_"+user.id.to_s, {:onclick=>"onSelectUser(this);"} %><%= user.name %>
+  <%= text_field :amount, "user_"+user.id.to_s, :disabled=>"disabled" %>
+  <br /><br />	 
+<% end %>

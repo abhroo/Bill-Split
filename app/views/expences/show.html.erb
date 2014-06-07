@@ -1,0 +1,32 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Description:</b>
+  <%= @expence.description %>
+</p>
+
+<p>
+  <b>Group:</b>
+  <%= @expence.group.name %>
+</p>
+
+<p>
+  <b>Location:</b>
+  <%= @expence.location %>
+</p>
+
+<p>
+  <b>Amount:</b>
+  <%= @expence.amount %>
+</p>
+
+<p>
+  <b>Users :</b>
+  <% user_list(@expence).each_with_index do |user| %>
+    <%= user.name + "-" + user_amount(@expence.id, user.id).to_s %>
+  <% end %>
+</p>
+
+
+<%= link_to 'Edit', edit_expence_path(@expence) %> |
+<%= link_to 'Back', expences_path %>

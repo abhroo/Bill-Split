@@ -1,0 +1,53 @@
+<h1>Listing expences</h1>
+
+<table>
+  <tr>
+    <th>Description</th>
+    <th>Group</th>
+    <th>Location</th>
+    <th>Total Amount</th>
+    <th>User ids</th>
+    <th></th>
+  </tr>
+
+<% @expences.each do |expence| %>
+  <tr>
+    <td><%= expence.description %></td>
+    <td><%= expence.group.name %></td>
+    <td><%= expence.location %></td>
+    <td><%= expence.amount %></td>
+    <td><%= user_name_list(expence) %></td>
+    <td><%= link_to 'Show', expence %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Expence', new_expence_path %>
+
+<br /><br />
+
+<div>
+  Total Expences = <b><%= total_expence(1) %></b>	
+  <table cellpadding="6" cellspacing="6" border="">
+    <thead>
+      <tr>
+      	<th>Name</th>
+      	<th>Total Spent</th>
+      	<th>Difference</th>
+      </tr>	
+    </thead>
+    <tbody>
+      <% Group.find(1).users.each do | user | %>
+        <tr>
+      	  <td><%= user.name %></td>
+      	  <td><%= user_spent(user.id) %></td>
+      	  <td>
+      	  	<%= user_deference(user) %>
+      	  </td>
+        </tr>
+      <% end %>  	
+    </tbody>
+  </table>  		
+</div>	
